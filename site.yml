@@ -1,5 +1,5 @@
 ---
 - hosts: zabbix
   roles:
-    - { role: "zabbix-centos" }
+    - { role: "osm_zabbix" }
  
