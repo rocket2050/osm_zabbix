@@ -53,14 +53,14 @@
   command: 'mysql -u root -p{{ mysql_root_password }} -e "{{ item }}"'
   with_items:
   #  - CREATE DATABASE {{ zabbix_db_name }};
-    - GRANT ALL on {{ zabbix_db_user_name }}.* to zabbix@localhost IDENTIFIED BY '{{ zabbix_db_password }}';
-#    - GRANT ALL PRIVILEGES on {{ zabbix_db_name }}.* to {{ zabbix_db_user_name }}@localhost IDENTIFIED BY '{{ zabbix_db_password }}';
-#    - GRANT ALL PRIVILEGES on {{ zabbix_db_name }}.* to {{ zabbix_db_user_name }}@'%' IDENTIFIED BY '{{ zabbix_db_password }}';
+#    - GRANT ALL on {{ zabbix_db_name }}.* to zabbix@localhost IDENTIFIED BY '{{ zabbix_db_password }}';
+    - GRANT ALL PRIVILEGES on {{ zabbix_db_name }}.* to {{ zabbix_db_user_name }}@localhost IDENTIFIED BY '{{ zabbix_db_password }}';
+    - GRANT ALL PRIVILEGES on {{ zabbix_db_name }}.* to {{ zabbix_db_user_name }}@'%' IDENTIFIED BY '{{ zabbix_db_password }}';
     - FLUSH PRIVILEGES;
   
 
 - name: Importing database ...
-  shell: "zcat /usr/share/doc/zabbix-server-mysql-3*/create.sql.gz | mysql -uroot zabbixdb"
+  shell: "zcat /usr/share/doc/zabbix-server-mysql/create.sql.gz | mysql -u root -p{{ mysql_root_password }}  {{ zabbix_db_name }}"
 
 - name: Adding zabbix configuration file ...
   template: src=zabbix-server.conf.j2 dest=/etc/zabbix/zabbix_server.conf owner=root group=zabbix mode=0640
