@@ -64,7 +64,7 @@
   template: src=zabbix-server.conf.j2 dest=/etc/zabbix/zabbix_server.conf owner=root group=zabbix mode=0640
 
 - name: Configuring zabbix ui part ...
-  template: src=zabbix.conf.php.j2 dest=/etc/zabbix/web/zabbix.conf.php owner=www-data group=ww-data mode=0644
+  template: src=zabbix.conf.php.j2 dest=/etc/zabbix/web/zabbix.conf.php owner=www-data group=www-data mode=0644
 
 - name: Starting zabbix server
   service: name=zabbix-server state=started
