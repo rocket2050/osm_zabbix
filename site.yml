@@ -1,5 +1,5 @@
 ---
-- hosts: zabbix
+- hosts: "{{ host }}"
   roles:
     - { role: "osm_zabbix" }
  
