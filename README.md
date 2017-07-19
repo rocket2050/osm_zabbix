@@ -32,22 +32,10 @@ None.
 
 ## Example Playbook (install zabbix-server and agent)
 
-For RHEL / CentOS:
 
     - hosts: zabbix
       roles:
         - role: zabbix
-          when: "ansible_os_family == 'RedHat'"
-          mysql_root_password:
-            - root
-          zabbix_db_password: 
-            - password
-          zabbix_server_ip: 
-            - 192.168.33.52
-          zabbix_db_name: 
-            - zabbixdb
-          zabbix_db_user_name: 
-            - zabbix
 
 ## License
 
