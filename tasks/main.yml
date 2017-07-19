@@ -46,11 +46,13 @@
 
 #- name: Configuring php setting ...
 #  template: src=zabbix.conf.j2 dest=/etc/apache2/sites-available/zabbix.conf owner=root group=root mode=0644
-
+- name: Create database
+  mysql_db: db={{ zabbix_db_name }} state=present
+  
 - name: Mysql Configuration
   command: 'mysql -u root -p{{ mysql_root_password }} -e "{{ item }}"'
   with_items:
-    - CREATE DATABASE {{ zabbix_db_name }};
+  #  - CREATE DATABASE {{ zabbix_db_name }};
     - GRANT ALL on {{ zabbix_db_user_name }}.* to zabbix@localhost IDENTIFIED BY '{{ zabbix_db_password }}';
 #    - GRANT ALL PRIVILEGES on {{ zabbix_db_name }}.* to {{ zabbix_db_user_name }}@localhost IDENTIFIED BY '{{ zabbix_db_password }}';
 #    - GRANT ALL PRIVILEGES on {{ zabbix_db_name }}.* to {{ zabbix_db_user_name }}@'%' IDENTIFIED BY '{{ zabbix_db_password }}';
