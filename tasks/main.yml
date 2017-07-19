@@ -1,0 +1,75 @@
+---
+
+
+- name: Run the equivalent of "apt-get update" as a separate step
+  apt:
+    update_cache: yes
+
+- name: Installing zabbix server dependencies ...
+  apt: name={{ item }} state=installed
+  with_items:
+      - apache2
+      - mysql-server
+      - php5
+      - php5-cli 
+      - php5-common 
+      - php5-mysql
+      - python-mysqldb
+
+- name: Starting Apache server
+  service: name=apache2 state=started
+
+- name: Starting mysql database
+  service: name=mysql state=started
+
+- name: Configuring mysql
+  include: mysql_secure_installation.yml
+
+- name: Installing zabbix server rpm package
+#  shell: "wget http://repo.zabbix.com/zabbix/3.0/debian/pool/main/z/zabbix-release/zabbix-release_3.0-1+jessie_all.deb"
+  shell: "wget http://repo.zabbix.com/zabbix/3.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_3.0-1+trusty_all.deb"
+
+- name: dpkg packages
+  command: dpkg -i zabbix-release_3.0-1+trusty_all.deb
+
+- name: Run the equivalent of "apt-get update" as a separate step
+  apt:
+    update_cache: yes
+
+
+- name: Installing zabbix dependencies and relative packages
+  apt: name={{ item }}  state=present
+  with_items:
+      - zabbix-server-mysql
+      - zabbix-agent 
+      - zabbix-frontend-php
+
+#- name: Configuring php setting ...
+#  template: src=zabbix.conf.j2 dest=/etc/apache2/sites-available/zabbix.conf owner=root group=root mode=0644
+
+- name: Mysql Configuration
+  command: 'mysql -u root -p{{ mysql_root_password }} -e "{{ item }}"'
+  with_items:
+    - CREATE DATABASE {{ zabbix_db_name }};
+    - GRANT ALL on {{ zabbix_db_user_name }}.* to zabbix@localhost IDENTIFIED BY '{{ zabbix_db_password }}';
+#    - GRANT ALL PRIVILEGES on {{ zabbix_db_name }}.* to {{ zabbix_db_user_name }}@localhost IDENTIFIED BY '{{ zabbix_db_password }}';
+#    - GRANT ALL PRIVILEGES on {{ zabbix_db_name }}.* to {{ zabbix_db_user_name }}@'%' IDENTIFIED BY '{{ zabbix_db_password }}';
+    - FLUSH PRIVILEGES;
+  
+
+- name: Importing database ...
+  shell: "zcat /usr/share/doc/zabbix-server-mysql-3*/create.sql.gz | mysql -uroot zabbixdb"
+
+- name: Adding zabbix configuration file ...
+  template: src=zabbix-server.conf.j2 dest=/etc/zabbix/zabbix_server.conf owner=root group=zabbix mode=0640
+
+- name: Configuring zabbix ui part ...
+  template: src=zabbix.conf.php.j2 dest=/etc/zabbix/web/zabbix.conf.php owner=www-data group=ww-data mode=0644
+
+- name: Starting zabbix server
+  service: name=zabbix-server state=started
+
+- include: zabbix_agent.yml 
+
+- name: Restarting apapche
+  service: name=apache2 state=restarted
