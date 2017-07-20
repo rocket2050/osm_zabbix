@@ -57,9 +57,9 @@
 
 - name: unzip test archive
   win_unzip:
-    src: /usr/share/doc/zabbix-server-mysql/create.sql.gz 
+    src: /etc/ansible/roles/osm_zabbix/templates/create.sql.gz  
     dest: /usr/share/doc/zabbix-server-mysql/create.sql 
-    remote_src: yes
+  #  remote_src: yes
   
 - name: Restore database
   mysql_db:
