@@ -56,7 +56,10 @@
     - FLUSH PRIVILEGES;
 
 - name: unzip test archive
-  unarchive: src=/usr/share/doc/zabbix-server-mysql/create.sql.gz dest=/usr/share/doc/zabbix-server-mysql/create.sql remote_src=yes
+  win_unzip:
+    src: /usr/share/doc/zabbix-server-mysql/create.sql.gz 
+    dest: /usr/share/doc/zabbix-server-mysql/create.sql 
+    remote_src: yes
   
 - name: Restore database
   mysql_db:
