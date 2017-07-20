@@ -66,7 +66,7 @@
     name: "{{ zabbix_db_name }}"
     state: import
     target: /usr/share/doc/zabbix-server-mysql/create.sql 
-    when: result|skipped
+    single_transaction: no
 
 #- name: Importing database ...
 #  shell: "zcat /usr/share/doc/zabbix-server-mysql/create.sql.gz | mysql -u root -p{{ mysql_root_password }}  {{ zabbix_db_name }}"
