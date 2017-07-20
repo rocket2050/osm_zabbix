@@ -61,15 +61,15 @@
 #    dest: /tmp/create.sql 
   #  remote_src: yes
   
-- name: Restore database
-  mysql_db:
-    name: "{{ zabbix_db_name }}"
-    state: import
-    target: /usr/share/doc/zabbix-server-mysql/create.sql 
-    single_transaction: no
+#- name: Restore database
+#  mysql_db:
+#    name: "{{ zabbix_db_name }}"
+#    state: import
+#    target: /usr/share/doc/zabbix-server-mysql/create.sql 
+#    single_transaction: no
 
-#- name: Importing database ...
-#  shell: "zcat /usr/share/doc/zabbix-server-mysql/create.sql.gz | mysql -u root -p{{ mysql_root_password }}  {{ zabbix_db_name }}"
+- name: Importing database ...
+  shell: "zcat /usr/share/doc/zabbix-server-mysql/create.sql.gz | mysql -u root -p{{ mysql_root_password }}  {{ zabbix_db_name }}"
 
 - name: Adding zabbix configuration file ...
   template: src=zabbix-server.conf.j2 dest=/etc/zabbix/zabbix_server.conf owner=root group=zabbix mode=0640
