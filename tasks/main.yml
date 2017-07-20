@@ -55,17 +55,17 @@
     - GRANT ALL PRIVILEGES on {{ zabbix_db_name }}.* to {{ zabbix_db_user_name }}@'%' IDENTIFIED BY '{{ zabbix_db_password }}';
     - FLUSH PRIVILEGES;
 
-- name: unzip test archive
-  win_unzip:
-    src: /etc/ansible/roles/osm_zabbix/templates/create.sql.gz  
-    dest: /tmp/create.sql 
+#- name: unzip test archive
+#  win_unzip:
+#    src: /etc/ansible/roles/osm_zabbix/templates/create.sql.gz  
+#    dest: /tmp/create.sql 
   #  remote_src: yes
   
 - name: Restore database
   mysql_db:
     name: "{{ zabbix_db_name }}"
     state: import
-    target: /usr/share/doc/zabbix-server-mysql/create.sql.gz 
+    target: /usr/share/doc/zabbix-server-mysql/create.sql 
 
 #- name: Importing database ...
 #  shell: "zcat /usr/share/doc/zabbix-server-mysql/create.sql.gz | mysql -u root -p{{ mysql_root_password }}  {{ zabbix_db_name }}"
