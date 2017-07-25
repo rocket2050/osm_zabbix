@@ -38,5 +38,5 @@
   when: ansible_os_family == "Debian"
 
 - name: Restarting mysql
-  service: name=mysqld state=restarted
+  service: name=mariadb state=restarted
   when: ansible_os_family == "RedHat"
