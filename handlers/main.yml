@@ -7,13 +7,13 @@
   service: name=mysqld state=restarted
   become: true
 
-- name: Restarting apache
+- name: Restart apache
   service: name=httpd state=restarted
   become: true
 
-- name: Start zabbix-server
-  service: name=zabbix-server state=started
+- name: zabbix-server restart
+  service: name=zabbix-server state=restarted
   become: true
 
-- name: Start zabbix-agent
+- name: zabbix-agent restart
   service: name=zabbix-agent state=started
