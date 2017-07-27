@@ -44,7 +44,7 @@
       - zabbix-server-mysql
       - zabbix-web-mysql
       - zabbix-get 
-#      - zabbix-agent
+      - zabbix-agent
 
 - name: Create DB (if necessary)
   mysql_db:
@@ -73,17 +73,19 @@
 
 - name: Configuring zabbix ui part ...
   template: src=zabbix.conf.php.j2 dest=/etc/zabbix/web/zabbix.conf.php owner=apache group=apache mode=0644
+  notify: zabbix-server restart
 
 - name: Configuring zabbix file ...
   template: src=zabbix.conf.j2 dest=/etc/httpd/conf.d/zabbix.conf
+  notify: Restart apache
 
-- name: Starting zabbix server
-  service: name=zabbix-server state=started
+#- name: Starting zabbix server
+#  service: name=zabbix-server state=started
 
 
-- name: Restarting apapche
-  service: name=httpd state=restarted
+#- name: Restarting apapche
+#  service: name=httpd state=restarted
 
-- name: Starting zabbix server
+- name: Starting zabbix agent
   service: name=zabbix-agent state=started
 
