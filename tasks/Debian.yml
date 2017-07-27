@@ -76,9 +76,6 @@
 - name: php configuration file  ...
   template: src=php.ini.j2 dest=/etc/php5/apache2/php.ini
 
-- name: Starting zabbix server
-  service: name=zabbix-server state=started
-
 - include: zabbix_agent.yml 
 
 - name: Restarting apapche
