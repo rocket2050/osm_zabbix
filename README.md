@@ -1,6 +1,6 @@
 # Ansible Role: Zabbix-server
 
-Installs zabbix-server and agent for RedHat/CentOS(7.2) and Ubuntu linux server.
+An Ansible role that install zabbix-server and agent for RedHat/CentOS(7.2) and Ubuntu linux server.
 
 ## Requirements
 
