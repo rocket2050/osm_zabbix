@@ -1,5 +1,5 @@
 ---
-- hosts: "{{ host }}"
+- hosts: vagrant
   roles:
     - /var/lib/awx/projects/_15__zabbix_new/site.yml
 #    - { role: "osm_zabbix" }
