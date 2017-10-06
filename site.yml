@@ -1,5 +1,6 @@
 ---
 - hosts: "{{ host }}"
   roles:
-    - { role: "osm_zabbix" }
+    - /var/lib/awx/projects/_13__zabbix/site.yml
+#    - { role: "osm_zabbix" }
  
