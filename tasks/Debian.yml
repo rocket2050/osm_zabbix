@@ -15,12 +15,14 @@
       - php5-common 
       - php5-mysql
       - python-mysqldb
+  notify: Start apache     
 
-- name: Starting Apache server
-  service: name=apache2 state=started
+#- name: Starting Apache server
+ # service: name=apache2 state=started
 
 - name: Starting mysql database
-  service: name=mysql state=started
+  notify: Start database
+ # service: name=mysql state=started
 
 - name: Configuring mysql
   include: mysql_secure_installation.yml
@@ -82,4 +84,5 @@
 - include: zabbix_agent.yml 
 
 - name: Restarting apapche
-  service: name=apache2 state=restarted
+  notify: Restart apache
+#  service: name=apache2 state=restarted
