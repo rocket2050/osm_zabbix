@@ -5,11 +5,17 @@
 - name: Restart database
   service: name=mysqld state=restarted
 
-- name: Restart apache
+- name: Restart httpd
   service: name=httpd state=restarted
+  
+- name: Start httpd
+  service: name=httpd state=started
   
 - name: Restart apache
   service: name=apache2 state=restarted
+  
+- name: Start apache
+  service: name=apache2 state=started
   
 - name: zabbix-server restart
   service: name=zabbix-server state=restarted
