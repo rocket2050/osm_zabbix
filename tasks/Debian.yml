@@ -15,13 +15,15 @@
       - php5-common 
       - php5-mysql
       - python-mysqldb
-  notify: Start apache     
+  notify: 
+    - Start apache
+    - Start database
 
 #- name: Starting Apache server
  # service: name=apache2 state=started
 
-- name: Starting mysql database
-  notify: Start database
+#- name: Starting mysql database
+#  notify: Start database
  # service: name=mysql state=started
 
 - name: Configuring mysql
@@ -81,8 +83,9 @@
 - name: php configuration file  ...
   template: src=php.ini.j2 dest=/etc/php5/apache2/php.ini
 
-- include: zabbix_agent.yml 
-
-- name: Restarting apapche
+- include: zabbix_agent.yml
   notify: Restart apache
+
+#- name: Restarting apapche
+#  notify: Restart apache
 #  service: name=apache2 state=restarted
