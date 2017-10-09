@@ -7,7 +7,10 @@
 
 - name: Restart apache
   service: name=httpd state=restarted
-
+  
+- name: Restart apache
+  service: name=apache2 state=restarted
+  
 - name: zabbix-server restart
   service: name=zabbix-server state=restarted
 
