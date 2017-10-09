@@ -17,7 +17,7 @@
       - python-mysqldb
   notify: 
     - Start apache
-    - Start database
+    - start database
 
 #- name: Starting Apache server
  # service: name=apache2 state=started
