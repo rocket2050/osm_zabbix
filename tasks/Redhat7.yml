@@ -13,12 +13,15 @@
       - php-mbstring 
       - php-pear
       - php
+  notify:
+    - Restart database
+    - Restart httpd
 
-- name: Starting Apache server
-  service: name=httpd state=started
+#- name: Starting Apache server
+#  service: name=httpd state=started
 
-- name: Starting mysql database
-  service: name=mariadb state=started
+#- name: Starting mysql database
+#  service: name=mariadb state=started
 
 - name: Configuring mysql
   include: mysql_secure_installation.yml
@@ -77,8 +80,8 @@
 
 - name: Configuring zabbix file ...
   template: src=zabbix.conf.j2 dest=/etc/httpd/conf.d/zabbix.conf
-  notify: Restart apache
+  notify: Restart httpd
 
-- name: Starting zabbix agent
-  service: name=zabbix-agent state=started
+#- name: Starting zabbix agent
+#  service: name=zabbix-agent state=started
 
