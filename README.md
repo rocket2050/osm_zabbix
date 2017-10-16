@@ -6,6 +6,21 @@ An Ansible role that install zabbix-server and agent for RedHat/CentOS(7.2) and 
 
 None.
 
+## Note
+
+If mysql pre installed on server, you can skip mysql installation.
+  - hosts: zabbix
+        roles:
+           - osm_zabbix
+        
+If mysql is not installed on server, you can include mysql installetion role as well.
+  - hosts: zabbix
+    roles:
+      - mysql-server
+      - osm_zabbix
+    
+
+
 ## Role Variables
 
 Available variables are listed below, along with default values:
