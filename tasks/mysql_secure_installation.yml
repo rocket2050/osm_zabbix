@@ -1,4 +1,6 @@
 ---
+#- name: Add .my.cnf
+#  template: src=my.cnf.j2 dest=/root/.my.cnf owner=root group=root mode=0622
 
 - name: Set root Password
   mysql_user: name=root host={{ item }} password={{ mysql_root_password }} state=present
@@ -7,9 +9,10 @@
     - localhost
 
 - name: Add .my.cnf
-  template: src=my.cnf.j2 dest=/root/.my.cnf owner=root group=root mode=0600
+  template: src=my.cnf.j2 dest=/root/.my.cnf owner=root group=root mode=0644
 
 - name: Reload privilege tables
+#  command: mysql -u root -p{{ mysql_root_password }} -e "{{ item }}"
   command: 'mysql -e "{{ item }}"'
   with_items:
     - FLUSH PRIVILEGES
@@ -37,6 +40,16 @@
   service: name=mysql state=restarted
   when: ansible_os_family == "Debian"
 
-- name: Restarting mysql
-  service: name=mariadb state=restarted
-  when: ansible_os_family == "RedHat"
+
+#- name: Restarting mysql
+#  service: name=mariadb state=restarted
+#  when:
+#    - ansible_os_family == "RedHat"
+#    - ansible_distribution_major_version == "7"
+
+#- name: Restarting mysql
+#  service: name=mysqld state=restarted
+#  when:
+#    - ansible_os_family == "RedHat"
+#    - ansible_distribution_major_version == "6"
+#  when: ansible_os_family == "RedHat"

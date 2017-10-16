@@ -1,6 +1,13 @@
 ---
+
+- name: start database
+  service: name=mysql state=started
+
 - name: Start database
   service: name=mysqld state=started
+
+#- name: Restart mariadb
+#  service: name=mariadb state=restarted
 
 - name: Restart database
   service: name=mysqld state=restarted
