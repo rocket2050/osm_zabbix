@@ -1,6 +1,6 @@
 ---
 # defaults file for zabbix
-mysql_root_password: "root"
+mysql_root_password: "root@123"
 zabbix_db_password: "password"
 zabbix_server_ip: "127.0.0.1"
 zabbix_db_name: "zabbix"
