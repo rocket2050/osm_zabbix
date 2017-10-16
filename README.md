@@ -15,6 +15,7 @@ If mysql pre installed on server, you can skip mysql installation.
         - osm_zabbix
         
 If mysql is not installed on server, you can include mysql installetion role as well.
+
     - hosts: zabbix
       roles:
         - mysql-server
