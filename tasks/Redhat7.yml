@@ -4,21 +4,12 @@
   yum: name={{ item }} state=installed
   with_items:
       - httpd
-#      - mariadb-server 
-#      - mariadb
-#      - mariadb-server 
-#      - mariadb
       - php-fpm
-#      - MySQL-python
       - php-mbstring 
       - php-pear
       - php
   notify:
-#    - Restart mariadb
     - Restart httpd
-
-#- name: Configuring mysql
-#  include: mysql_secure_installation.yml
 
 - name: install packages
   yum: name={{ item }} state=installed
@@ -73,6 +64,4 @@
   notify: Restart httpd
 
 - include: zabbix_agent.yml
-#- name: Starting zabbix agent
-#  service: name=zabbix-agent state=started
-
+  notify: Restart httpd

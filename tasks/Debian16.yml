@@ -1,6 +1,5 @@
 ---
 
-
 - name: Update the cache.........
   apt:
     update_cache: yes
@@ -9,23 +8,14 @@
   apt: name={{ item }} state=installed
   with_items:
       - apache2
-      - mysql-server
       - php7.0-xml
       - php7.0-bcmath
       - php7.0-mbstring
       - php7.0-mysql
-      - python-mysqldb
   notify:
     - Start apache
     - start database
-#- name: Starting Apache server
-#  service: name=apache2 state=started
 
-#- name: Starting mysql database
-#  service: name=mysql state=started
-
-#- name: Configuring mysql
-#  include: mysql_secure_installation.yml
 
 - name: Installing zabbix server rpm package
   get_url: 
@@ -81,6 +71,4 @@
   template: src=php.ini.j2 dest=/etc/php/7.0/apache2/php.ini
 
 - include: zabbix_agent.yml
-
-- name: Restarting apapche
-  service: name=apache2 state=restarted
+  notify: Restart apache
