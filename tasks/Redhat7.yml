@@ -64,4 +64,7 @@
   notify: Restart httpd
 
 - include: zabbix_agent.yml
-  notify: Restart httpd
+
+- name: service httpd restart
+  service: name=httpd state=restarted
+

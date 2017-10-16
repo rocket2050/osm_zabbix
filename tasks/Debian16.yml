@@ -71,4 +71,8 @@
   template: src=php.ini.j2 dest=/etc/php/7.0/apache2/php.ini
 
 - include: zabbix_agent.yml
-  notify: Restart apache
+
+- name: service apache restart...
+  service: name=apache2 state=restarted
+
+#  notify: Restart apache
