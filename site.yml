@@ -2,6 +2,8 @@
 - hosts: all
   become: true
   roles:
-    - mysql-server
-    - osm_zabbix
+    - /var/lib/awx/projects/_9__mysql_server
+    - /var/lib/awx/projects/_6__osm_zabbix
+
+#   - osm_zabbix
  
