@@ -6,12 +6,9 @@ Table of Contents
     + [Zabbix 3.4](#zabbix-34)
     + [Zabbix 3.2](#zabbix-32)
     + [Zabbix 3.0](#zabbix-30)
+- [Role of variables](role of variables)
 - [Dependencies](#dependencies)
 - [Example Playbook](#example-playbook)
-- [Molecule](#molecule)
-- [Contributors](#contributors)
-- [License](#license)
-- [Author Information](#author-information)
 
 # Upgrades
 
@@ -23,6 +20,7 @@ With this 1.1 release, the following is changed:
  
 
 # Requirements
+Python must be installed on the node machine.
 
 ## Operating systems
 
@@ -62,12 +60,12 @@ See the following list of supported Operating systems with the Zabbix releases.
 
 # Example Playbook
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
+```
    - hosts: zabbix
-      roles:
+     roles:
         - osm_zabbix
-
-# Role Variables
+```
+## Role Variables
 
 Available variables are listed below, along with default values:
 
