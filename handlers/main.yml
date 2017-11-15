@@ -1,9 +1,15 @@
 ---
-- name: Start database
-  service: name=mysqld state=started
+#- name: Start mysql
+#  service: name=mysql state=started
 
-- name: Restart database
-  service: name=mysqld state=restarted
+#- name: Retart mysql
+#  service: name=mysql state=restarted
+
+#- name: Start mysqld
+#  service: name=mysqld state=started
+
+#- name: Restart mysqld
+#  service: name=mysqld state=restarted
 
 - name: Restart httpd
   service: name=httpd state=restarted

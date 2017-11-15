@@ -16,7 +16,7 @@
       - python-mysqldb
   notify: 
     - Start apache
-    - Start database
+    - Start mysql
 
 - name: Configuring mysql
   include: mysql_secure_installation.yml
