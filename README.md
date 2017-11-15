@@ -6,13 +6,12 @@ Table of Contents
     + [Zabbix 3.4](#zabbix-34)
     + [Zabbix 3.2](#zabbix-32)
     + [Zabbix 3.0](#zabbix-30)
-- [Role of variables](#role of variables)
 - [Dependencies](#dependencies)
 - [Example Playbook](#example-playbook)
 
 # Upgrades
 
-## 1.0.0
+## 1.0
 
 With this 1.1 release, the following is changed:
 
