@@ -1,48 +1,44 @@
-# Ansible Role: Zabbix-server
+Table of Contents
 
-An Ansible role that install zabbix-server and agent for RedHat/CentOS(7.2) and Ubuntu linux server.
+- [Requirements](#requirements)
+  * [Operating systems](#operating-systems)
+  * [Zabbix Versions](#zabbix-versions)
+    + [Zabbix 3.4](#zabbix-34)
+    + [Zabbix 3.2](#zabbix-32)
+    + [Zabbix 3.0](#zabbix-30)
+    + [Zabbix 2.4](#zabbix-24)
+    + [Zabbix 2.2](#zabbix-22)
+  * [Main variables](#main-variables)
+    + [Overall Zabbix](#overall-zabbix)
+    + [Zabbix Server](#zabbix-server)
+  * [Database](#database)
+- [Dependencies](#dependencies)
+- [Example Playbook](#example-playbook)
+- [Molecule](#molecule)
+- [Contributors](#contributors)
+- [License](#license)
+- [Author Information](#author-information)
 
-## Requirements
+# Upgrades
 
-None.
+## 1.0.0
 
-## Role Variables
+With this 1.0.0 release, the following is changed:
 
-Available variables are listed below, along with default values:
+* This repository will only contain all the actions that are needed for correct configuring a Zabbix Server. All tasks regarding the frontend/webui of Zabbix has been transferred to the `dj-wasabi.zabbix-web` role.
+* All properties starts with `zabbix_` now. Example, property named `server_dbuser` is now `zabbix_server_dbuser`.
 
-    # The defaults provided by this role are specific to each distribution
-       mysql_root_password: "root@123"
-       zabbix_db_password: "password"
-       zabbix_server_ip: "192.168.33.52"
-       zabbix_db_name: "zabbixdb"
-       zabbix_db_user_name: "zabbix"
+# Requirements
 
-Set these defaults according to your infrastructure.
+## Operating systems
 
+This role will work on the following operating systems:
 
-## Dependencies
+ * Red Hat
+ * Debian
+ * Ubuntu
 
-None.
-
-## Example Playbook (installs zabbix-server version 3.0 and above)
-
-    - hosts: zabbix
-      roles:
-        - zabbix
-
-## Example Playbook (install zabbix-server and agent)
+So, you'll need one of those operating systems.. :-)
+Please sent Pull Requests or suggestions when you want to use this role for other Operating systems.
 
 
-    - hosts: zabbix
-      roles:
-        - role: zabbix
-
-## License
-
-MIT / BSD
-
-## Author Information
-
-www.opstree.com
-
-blog.opstree.com
