@@ -1,9 +1,9 @@
 ---
-#- name: Start mysql
-#  service: name=mysql state=started
+- name: Start mysql
+  service: name=mysql state=started
 
-#- name: Retart mysql
-#  service: name=mysql state=restarted
+- name: Retart mysql
+  service: name=mysql state=restarted
 
 #- name: Start mysqld
 #  service: name=mysqld state=started
