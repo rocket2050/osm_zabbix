@@ -19,7 +19,7 @@ With this 1.1 release, the following is changed:
  
 
 # Requirements
-Python must be installed on the node machine.
+Python and Mysql must be installed on the node machine.
 
 ## Operating systems
 
