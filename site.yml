@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: "{{ host }}"
   become: true
   roles:
 #    -  { role: "/var/lib/awx/projects/_6__zabbix_new" }
