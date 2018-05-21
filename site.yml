@@ -2,6 +2,5 @@
 - hosts: all
   become: true
   roles:
-    -  { role: "/var/lib/awx/projects/_6__zabbix_new" }
-#    - { role: "osm_zabbix" }
+    - { role: "osm_zabbix" }
  
