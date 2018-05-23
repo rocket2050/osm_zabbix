@@ -48,6 +48,7 @@
       - zabbix-web-mysql
       - zabbix-get 
       - zabbix-agent
+      - zabbix-java-gateway
 
 - name: Create DB (if necessary)
   mysql_db:

@@ -40,6 +40,7 @@
       - zabbix-server-mysql
       - zabbix-agent 
       - zabbix-frontend-php
+      - zabbix-java-gateway
 
 - name: Create DB (if necessary)
   mysql_db:
