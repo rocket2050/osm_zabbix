@@ -216,7 +216,7 @@ DBPassword={{ zabbix_db_password }}
 #
 # Mandatory: no
 # Default:
-# JavaGateway=
+JavaGateway={{ inventory_hostname }}
 
 ### Option: JavaGatewayPort
 #	Port that Zabbix Java gateway listens on.
@@ -224,7 +224,7 @@ DBPassword={{ zabbix_db_password }}
 # Mandatory: no
 # Range: 1024-32767
 # Default:
-# JavaGatewayPort=10052
+JavaGatewayPort=10052
 
 ### Option: StartJavaPollers
 #	Number of pre-forked instances of Java pollers.
@@ -232,7 +232,7 @@ DBPassword={{ zabbix_db_password }}
 # Mandatory: no
 # Range: 0-1000
 # Default:
-# StartJavaPollers=0
+StartJavaPollers=5
 
 ### Option: StartVMwareCollectors
 #	Number of pre-forked vmware collector instances.
